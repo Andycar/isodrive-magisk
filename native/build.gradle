@@ -3,6 +3,13 @@ plugins {
 }
 
 android {
+    namespace 'com.nitanmarcel.isodrive.native'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 21
+    }
+
     externalNativeBuild {
         ndkBuild {
             path("jni/Android.mk")

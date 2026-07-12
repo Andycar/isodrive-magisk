@@ -20,3 +20,14 @@ mkdir -p out
 cp -af magisk-module out
 mv -fT native/libs out/magisk-module/libs
 zip -r9 out/magisk-module-release.zip out/magisk-module
+
+gradle_task="assembleDebug"
+apk_dir="app/build/outputs/apk/debug"
+if [[ "$build_mode" == "release" ]]; then
+    gradle_task="assembleRelease"
+    apk_dir="app/build/outputs/apk/release"
+fi
+
+./gradlew ":app:${gradle_task}"
+apk_path=$(find "$apk_dir" -name "*.apk" | head -n1)
+cp -af "$apk_path" out/IsoDriveUI.apk

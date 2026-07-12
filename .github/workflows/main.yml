@@ -22,6 +22,11 @@ jobs:
       id: setup-ndk
       with:
         ndk-version: r24
+    - name: Set up JDK
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
     - name: Build
       id: build
       run: |
@@ -32,3 +37,8 @@ jobs:
       with:
         name: magisk-module-release
         path: out/magisk-module
+    - name: Upload IsoDriveUI APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: IsoDriveUI-apk
+        path: out/IsoDriveUI.apk
