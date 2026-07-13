@@ -61,10 +61,20 @@ fun MainScreen(viewModel: IsoDriveViewModel) {
             Spacer(Modifier.height(16.dp))
             Text("Options", style = MaterialTheme.typography.titleSmall)
             OptionCheckbox("Read/write (-rw)", state.options.readWrite) {
-                viewModel.updateOptions(state.options.copy(readWrite = it))
+                viewModel.updateOptions(
+                    state.options.copy(
+                        readWrite = it,
+                        cdrom = if (it) false else state.options.cdrom,
+                    )
+                )
             }
             OptionCheckbox("CD-ROM (-cdrom)", state.options.cdrom) {
-                viewModel.updateOptions(state.options.copy(cdrom = it))
+                viewModel.updateOptions(
+                    state.options.copy(
+                        cdrom = it,
+                        readWrite = if (it) false else state.options.readWrite,
+                    )
+                )
             }
             OptionCheckbox("Force configfs", state.options.forceConfigfs) {
                 viewModel.updateOptions(
