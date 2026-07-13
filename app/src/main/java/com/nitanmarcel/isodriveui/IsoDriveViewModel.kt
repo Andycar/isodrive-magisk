@@ -59,6 +59,10 @@ class IsoDriveViewModel : ViewModel() {
         runCommand { repository.unmount() }
     }
 
+    fun clearLog() {
+        _uiState.update { it.copy(log = emptyList()) }
+    }
+
     private fun runCommand(block: suspend () -> ShellResult) {
         viewModelScope.launch {
             _uiState.update { it.copy(busy = true) }

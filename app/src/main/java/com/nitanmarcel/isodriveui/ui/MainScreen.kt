@@ -1,5 +1,6 @@
 package com.nitanmarcel.isodriveui.ui
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -24,6 +25,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -112,7 +114,16 @@ fun MainScreen(viewModel: IsoDriveViewModel) {
             }
 
             Spacer(Modifier.height(16.dp))
-            Text("Log", style = MaterialTheme.typography.titleSmall)
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text("Log", style = MaterialTheme.typography.titleSmall)
+                TextButton(onClick = viewModel::clearLog, enabled = state.log.isNotEmpty()) {
+                    Text("Clear logs")
+                }
+            }
             Surface(
                 color = MaterialTheme.colorScheme.surfaceVariant,
                 modifier = Modifier
