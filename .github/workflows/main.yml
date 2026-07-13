@@ -3,7 +3,7 @@ name: Main
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         submodules: 'recursive'
         fetch-depth: 0
@@ -33,12 +33,12 @@ jobs:
         chmod 777 ./build.sh
         ./build.sh
     - name: Upload release
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: magisk-module-release
         path: out/magisk-module
     - name: Upload IsoDriveUI APK
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: IsoDriveUI-apk
         path: out/IsoDriveUI.apk
