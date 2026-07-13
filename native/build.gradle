@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace 'com.nitanmarcel.isodrive.native'
+    namespace 'com.nitanmarcel.isodrive.nativelib'
     compileSdk 34
 
     defaultConfig {
